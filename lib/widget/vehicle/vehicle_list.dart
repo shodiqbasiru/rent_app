@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rent_app/model/user.dart';
 import 'package:rent_app/model/vehicle_rental.dart';
+import 'package:rent_app/widget/vehicle/vehicle_detail_screen.dart';
 
 class VehicleList extends StatelessWidget {
   final User user;
@@ -125,7 +126,7 @@ class VehicleList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => VehicleDetailScreen(vehicle: vehicle))),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red.shade700,
                             padding: const EdgeInsets.symmetric(
