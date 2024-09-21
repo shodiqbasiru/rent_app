@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (emailController.text == user.email &&
           passwordController.text == user.password) {
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => const MainScreen()), (route) => false);
+            MaterialPageRoute(builder: (context) => MainScreen(user: user)), (route) => false);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
