@@ -45,7 +45,7 @@ var listVehicleRental = <VehicleRental>[
     brand: 'Honda',
     year: 2021,
     pricePerDay: 100000,
-    isAvailable: true,
+    isAvailable: false,
     image: 'images/honda-beat.jpg',
     imageUrls: [
       'https://upload.wikimedia.org/wikipedia/commons/d/da/2020_Honda_BeAT_CBS_110_%2820211007%29.jpg',
@@ -90,7 +90,7 @@ var listVehicleRental = <VehicleRental>[
     brand: 'Toyota',
     year: 2021,
     pricePerDay: 350000,
-    isAvailable: true,
+    isAvailable: false,
     image: 'images/toyota-yaris.jpg',
     imageUrls: [
       'https://img.indianautosblog.com/crop/1200x675/2016/11/Toyota-Yaris-TRD-Sportivo-special-edition-front-three-quarter-at-the-Thai-Motor-Expo.jpg',
