@@ -167,8 +167,8 @@ class VehicleDetailMobileScreen extends StatelessWidget {
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('You have booked ${vehicle.name}'),
-                    backgroundColor: Colors.green,
+                    content: Text(vehicle.isAvailable ? 'You have booked ${vehicle.name} :)' : 'Sorry, ${vehicle.name} is not available :('),
+                    backgroundColor: vehicle.isAvailable ? Colors.green : Colors.red,
                   ),
                 );
               },
@@ -358,9 +358,8 @@ class _VehicleDetailWebScreenState extends State<VehicleDetailWebScreen> {
                               onPressed: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                        'You have booked ${widget.vehicle.name}'),
-                                    backgroundColor: Colors.green,
+                                    content: Text(widget.vehicle.isAvailable ? 'You have booked ${widget.vehicle.name} :)' : 'Sorry, ${widget.vehicle.name} is not available :('),
+                                    backgroundColor: widget.vehicle.isAvailable ? Colors.green : Colors.red,
                                   ),
                                 );
                               },
