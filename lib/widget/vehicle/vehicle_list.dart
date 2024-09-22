@@ -175,6 +175,7 @@ class VehicleListMobileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
+                        flex: 2,
                         child: ElevatedButton(
                             onPressed: () => Navigator.push(
                                 context,

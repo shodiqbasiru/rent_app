@@ -58,7 +58,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.pop(context); // Close the registration screen
+                Navigator.pop(context);
               },
               child: const Text('OK'),
             ),
@@ -161,9 +161,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {
-                  // Handle forgot password
-                },
+                onPressed: () {},
                 child: const Text(
                   'Forgot Password?',
                   style: TextStyle(color: Colors.blue),
