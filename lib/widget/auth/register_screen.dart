@@ -25,6 +25,49 @@ class RegisterMobileScreen extends StatefulWidget {
 }
 
 class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _phoneNumberController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Registration Successful'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Full Name: ${_fullNameController.text}'),
+              Text('Phone Number: ${_phoneNumberController.text}'),
+              Text('Email: ${_emailController.text}'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context); // Close the registration screen
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -43,6 +86,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             ),
             const SizedBox(height: 40),
             TextField(
+              controller: _fullNameController,
               decoration: InputDecoration(
                 labelText: 'Full Name',
                 border: OutlineInputBorder(
@@ -60,6 +104,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: _phoneNumberController,
               decoration: InputDecoration(
                 labelText: 'Phone Number',
                 border: OutlineInputBorder(
@@ -77,6 +122,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(
@@ -94,6 +140,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -126,7 +173,7 @@ class _RegisterMobileScreenState extends State<RegisterMobileScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Handle Sign Up
+                _showSuccessDialog();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red.shade700,
@@ -169,9 +216,51 @@ class RegisterWebScreen extends StatefulWidget {
 }
 
 class _RegisterWebScreenState extends State<RegisterWebScreen> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _phoneNumberController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Registration Successful'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Full Name: ${_fullNameController.text}'),
+              Text('Phone Number: ${_phoneNumberController.text}'),
+              Text('Email: ${_emailController.text}'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // make two columns one for welcome message and another for form
     return Row(
       children: [
         Expanded(
@@ -213,6 +302,7 @@ class _RegisterWebScreenState extends State<RegisterWebScreen> {
                   ),
                   const SizedBox(height: 40),
                   TextField(
+                    controller: _fullNameController,
                     decoration: InputDecoration(
                       labelText: 'Full Name',
                       border: OutlineInputBorder(
@@ -230,6 +320,7 @@ class _RegisterWebScreenState extends State<RegisterWebScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextField(
+                    controller: _phoneNumberController,
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
                       border: OutlineInputBorder(
@@ -247,6 +338,7 @@ class _RegisterWebScreenState extends State<RegisterWebScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(
@@ -264,6 +356,7 @@ class _RegisterWebScreenState extends State<RegisterWebScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextField(
+                    controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -296,7 +389,7 @@ class _RegisterWebScreenState extends State<RegisterWebScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle Sign Up
+                      _showSuccessDialog();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red.shade700,
@@ -333,4 +426,3 @@ class _RegisterWebScreenState extends State<RegisterWebScreen> {
     );
   }
 }
-
