@@ -10,8 +10,10 @@ class VehicleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth < 600) {
-        return const VehicleListMobileScreen();
+      if (constraints.maxWidth < 334) {
+        return const VehicleListMobileScreen(count: 1, aspectRatio: 0.6);
+      } else if (constraints.maxWidth < 600) {
+        return const VehicleListMobileScreen(count: 2, aspectRatio: 1.5);
       } else if (constraints.maxWidth < 1200) {
         return const VehicleListWebScreen(count: 4);
       } else {
@@ -46,7 +48,9 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 }
 
 class VehicleListMobileScreen extends StatelessWidget {
-  const VehicleListMobileScreen({super.key});
+  final int count;
+  final double aspectRatio;
+  const VehicleListMobileScreen({super.key, required this.count, required this.aspectRatio});
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +63,11 @@ class VehicleListMobileScreen extends StatelessWidget {
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: count,
           crossAxisSpacing: 4.0,
           mainAxisSpacing: 4.0,
-          childAspectRatio: 0.8,
+          childAspectRatio: 2 / 3,
         ),
         itemBuilder: (context, index) {
           final VehicleRental vehicle = listVehicleRental[index];
@@ -123,12 +127,16 @@ class VehicleListMobileScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(vehicle.name,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
-                      Icon(vehicle.type == 'Car'
-                          ? Icons.car_rental_sharp
-                          : Icons.motorcycle_sharp),
+                      Expanded(
+                        child: Text(vehicle.name,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                      ),
+                      Expanded(
+                        child: Icon(vehicle.type == 'Car'
+                            ? Icons.car_rental_sharp
+                            : Icons.motorcycle_sharp),
+                      ),
                     ],
                   ),
                 ),
@@ -166,21 +174,27 @@ class VehicleListMobileScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ElevatedButton(
-                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => VehicleDetailScreen(vehicle: vehicle))),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red.shade700,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                      Expanded(
+                        child: ElevatedButton(
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        VehicleDetailScreen(vehicle: vehicle))),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade700,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 6, horizontal: 14),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
-                          ),
-                          child: const Text(
-                            "Rent Now",
-                            style: TextStyle(color: Colors.white),
-                          )),
-                      const FavoriteButton(),
+                            child: const Text(
+                              "Rent Now",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                      const Expanded(child: FavoriteButton()),
                     ],
                   ),
                 ),
@@ -201,7 +215,6 @@ class VehicleListWebScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // make responsive for web and ipad
     return Padding(
       padding: const EdgeInsets.only(
         bottom: 20,
@@ -277,12 +290,16 @@ class VehicleListWebScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(vehicle.name,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)),
-                      Icon(vehicle.type == 'Car'
-                          ? Icons.car_rental_sharp
-                          : Icons.motorcycle_sharp),
+                      Expanded(
+                        child: Text(vehicle.name,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                      ),
+                      Expanded(
+                        child: Icon(vehicle.type == 'Car'
+                            ? Icons.car_rental_sharp
+                            : Icons.motorcycle_sharp),
+                      ),
                     ],
                   ),
                 ),
@@ -324,7 +341,11 @@ class VehicleListWebScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ElevatedButton(
-                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => VehicleDetailScreen(vehicle: vehicle))),
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        VehicleDetailScreen(vehicle: vehicle))),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade700,
                               padding: const EdgeInsets.symmetric(
